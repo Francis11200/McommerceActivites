@@ -5,11 +5,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ExpeditionDao extends JpaRepository <Expedition, Integer>{
 
-    /*public ExpeditionUpdate(int id);
-    public ExpeditionfindById(int id);
-    public ExpeditionSave(Expedition expedition);*/
+    public void update(int id);
+    public Optional<Expedition> findById(int id);
+    public void save(int id, int idCommande, int etat);
 }

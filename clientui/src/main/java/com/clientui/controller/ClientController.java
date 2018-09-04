@@ -1,9 +1,11 @@
 package com.clientui.controller;
 
 import com.clientui.beans.CommandeBean;
+import com.clientui.beans.ExpeditionBean;
 import com.clientui.beans.PaiementBean;
 import com.clientui.beans.ProductBean;
 import com.clientui.proxies.MicroserviceCommandeProxy;
+import com.clientui.proxies.MicroserviceExpeditionProxy;
 import com.clientui.proxies.MicroservicePaiementProxy;
 import com.clientui.proxies.MicroserviceProduitsProxy;
 import org.slf4j.Logger;
@@ -33,6 +35,9 @@ public class ClientController {
 
     @Autowired
     private MicroservicePaiementProxy paiementProxy;
+
+    @Autowired
+    private MicroserviceExpeditionProxy expeditionProxy;
 
 
     Logger log = LoggerFactory.getLogger(this.getClass());
@@ -128,5 +133,25 @@ public class ClientController {
     private Long numcarte() {
 
         return ThreadLocalRandom.current().nextLong(1000000000000000L,9000000000000000L );
+    }
+
+    /*
+     * Étape (6)
+     * Opération qui fait appel au microservice d'expedition pour traiter une expedition
+     * */
+    @RequestMapping(value = "/expedier-commande/{idCommande}")
+    public String modifierUneExpedition(@PathVariable int idCommande, Model model){
+
+        ExpeditionBean expeditionAmodifier = new ExpeditionBean();
+
+        //on reseigne les détails du produit
+        expeditionAmodifier.setIdCommande(idCommande);
+
+        // On appel le microservice et (étape 7) on récupère le résultat qui est sous forme ResponseEntity<ExpeditionBean> ce qui va nous permettre de vérifier le code retour.
+        ResponseEntity<ExpeditionBean> expedition = expeditionProxy.modifierUneExpedition(expeditionAmodifier);
+
+       model.addAttribute("livré");
+
+        return "expedition";
     }
 }
