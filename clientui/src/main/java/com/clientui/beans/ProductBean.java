@@ -16,6 +16,14 @@ public class ProductBean {
     public ProductBean() {
     }
 
+    public ProductBean(int id, String titre, String description, String image, Double prix) {
+        this.id = id;
+        this.titre = titre;
+        this.description = description;
+        this.image = image;
+        this.prix = prix;
+    }
+
     public int getId() {
         return id;
     }

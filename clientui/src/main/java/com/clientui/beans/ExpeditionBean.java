@@ -2,10 +2,16 @@ package com.clientui.beans;
 
 public class ExpeditionBean {
     private int id;
-    private int idCommande;
-    private int etat;
+    private Integer idCommande;
+    private Integer etat;
 
     public ExpeditionBean() {
+    }
+
+    public ExpeditionBean(int id, Integer idCommande, Integer etat) {
+        this.id = id;
+        this.idCommande = idCommande;
+        this.etat = etat;
     }
 
     public int getId() {
@@ -16,19 +22,19 @@ public class ExpeditionBean {
         this.id = id;
     }
 
-    public int getIdCommande() {
+    public Integer getIdCommande() {
         return idCommande;
     }
 
-    public void setIdCommande(int idCommande) {
+    public void setIdCommande(Integer idCommande) {
         this.idCommande = idCommande;
     }
 
-    public int getEtat() {
+    public Integer getEtat() {
         return etat;
     }
 
-    public void setEtat(int etat) {
+    public void setEtat(Integer etat) {
         this.etat = etat;
     }
 

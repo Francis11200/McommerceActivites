@@ -14,6 +14,13 @@ public class PaiementBean {
     public PaiementBean() {
     }
 
+    public PaiementBean(int id, Integer idCommande, Double montant, Long numeroCarte) {
+        this.id = id;
+        this.idCommande = idCommande;
+        this.montant = montant;
+        this.numeroCarte = numeroCarte;
+    }
+
     public int getId() {
         return id;
     }

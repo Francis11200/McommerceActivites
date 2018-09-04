@@ -10,7 +10,5 @@ import java.util.Optional;
 @Repository
 public interface ExpeditionDao extends JpaRepository <Expedition, Integer>{
 
-    public void update(int id);
-    public Optional<Expedition> findById(int id);
-    public void save(int id, int idCommande, int etat);
+    public Optional<Expedition> findByIdCommandeLike(int idCommande);
 }

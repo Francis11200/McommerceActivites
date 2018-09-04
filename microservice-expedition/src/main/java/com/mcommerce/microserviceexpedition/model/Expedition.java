@@ -18,9 +18,12 @@ public class Expedition {
     private int etat;
 
     public Expedition() {
+        super();
     }
 
-    public Expedition(int idCommande, int etat) {
+    public Expedition(int id, int idCommande, int etat) {
+        super();
+        this.id = id;
         this.idCommande = idCommande;
         this.etat = etat;
     }

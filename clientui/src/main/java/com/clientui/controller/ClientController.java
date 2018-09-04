@@ -46,7 +46,7 @@ public class ClientController {
     * Étape (1)
     * Opération qui récupère la liste des produits et on les affichent dans la page d'accueil.
     * Les produits sont récupérés grâce à ProduitsProxy
-    * On fini par rentourner la page Accueil.html à laquelle on passe la liste d'objets "produits" récupérés.
+    * On fini par retourner la page Accueil.html à laquelle on passe la liste d'objets "produits" récupérés.
     * */
     @RequestMapping("/")
     public String accueil(Model model){
@@ -124,6 +124,12 @@ public class ClientController {
         if(paiement.getStatusCode() == HttpStatus.CREATED)
                 paiementAccepte = true;
 
+        ExpeditionBean expeditionBean = new ExpeditionBean();
+        expeditionBean.setId(0);
+        expeditionBean.setIdCommande(idCommande);
+        expeditionBean.setEtat(0);
+        expeditionProxy.ajouterUneExpedition(expeditionBean);
+
         model.addAttribute("paiementOk", paiementAccepte); // on envoi un Boolean paiementOk à la vue
 
         return "confirmation";
@@ -139,19 +145,19 @@ public class ClientController {
      * Étape (6)
      * Opération qui fait appel au microservice d'expedition pour traiter une expedition
      * */
-    @RequestMapping(value = "/expedier-commande/{idCommande}")
-    public String modifierUneExpedition(@PathVariable int idCommande, Model model){
+    @RequestMapping(value = "/suivi/{idCommande}")
+    public String suivreUneExpedition(@PathVariable int idCommande, Model model){
 
-        ExpeditionBean expeditionAmodifier = new ExpeditionBean();
+        Optional<ExpeditionBean> expeditionASuivre = expeditionProxy.etatExpedition(idCommande);
 
-        //on reseigne les détails du produit
-        expeditionAmodifier.setIdCommande(idCommande);
+        ExpeditionBean commandeASuivre = expeditionASuivre.get();
 
-        // On appel le microservice et (étape 7) on récupère le résultat qui est sous forme ResponseEntity<ExpeditionBean> ce qui va nous permettre de vérifier le code retour.
-        ResponseEntity<ExpeditionBean> expedition = expeditionProxy.modifierUneExpedition(expeditionAmodifier);
+        CommandeBean commande = CommandesProxy.recupererUneCommande(idCommande);
 
-       model.addAttribute("livré");
+       model.addAttribute("commandeSuivie", commandeASuivre);
+       model.addAttribute("commande", commande);
 
-        return "expedition";
+        return "Expedition";
     }
+
 }

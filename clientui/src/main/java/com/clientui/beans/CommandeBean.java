@@ -18,6 +18,14 @@ public class CommandeBean {
     public CommandeBean() {
     }
 
+    public CommandeBean(int id, Integer productId, Date dateCommande, Integer quantite, Boolean commandePayee) {
+        this.id = id;
+        this.productId = productId;
+        this.dateCommande = dateCommande;
+        this.quantite = quantite;
+        this.commandePayee = commandePayee;
+    }
+
     public int getId() {
         return id;
     }
