@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface ExpeditionDao extends JpaRepository <Expedition, Integer>{
 
-   /* public List<Expedition>findAll();
+    /*public ExpeditionUpdate(int id);
     public ExpeditionfindById(int id);
     public ExpeditionSave(Expedition expedition);*/
 }
