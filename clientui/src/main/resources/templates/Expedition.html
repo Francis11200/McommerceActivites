@@ -19,13 +19,13 @@
             <br>
             État de la commande :
             <br>
-            <span style="color:yellow;font-weight: bold" th:if="${commandeSuivie.etat == 0}"> En préparation </span>
-            <span style="color:green;font-weight: bold" th:if="${commandeSuivie.etat == 1}"> Expédiée </span>
-            <span style="color:blue;font-weight: bold" th:if="${commandeSuivie.etat == 2}"> Livrée </span>
+            <span style="color:green;font-weight: bold" th:if="${commandeSuivie.etat == 0}"> En préparation </span>
+            <span style="color:blue;font-weight: bold" th:if="${commandeSuivie.etat == 1}"> Expédiée </span>
+            <span style="color:red;font-weight: bold" th:if="${commandeSuivie.etat == 2}"> Livrée </span>
         </p>
         <br>
     </div>
-    <a th:href="@{|/|}" class="font-weight-bold text-center">retour a l'acceuil</a>
+    <a th:href="@{|/|}" class="font-weight-bold text-center">retour a l'accueil</a>
 </div>
 
 
