@@ -111,7 +111,7 @@ public class ClientController {
 
         PaiementBean paiementAExcecuter = new PaiementBean();
 
-        //on reseigne les détails du produit
+        //on renseigne les détails du produit
         paiementAExcecuter.setIdCommande(idCommande);
         paiementAExcecuter.setMontant(montantCommande);
         paiementAExcecuter.setNumeroCarte(numcarte()); // on génère un numéro au hasard pour simuler une CB
